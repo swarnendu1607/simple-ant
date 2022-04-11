@@ -1,0 +1,17 @@
+node {
+    def antHome
+    stage('checkout from Github') { // for display purposes
+        // Get some code from a GitHub repository
+    git credentialsId: '587a1a4d-30d3-4c41-82d5-dae9ef5832b7',
+    url: 'https://github.com/swarnendu1607/simple-ant'
+    //    mvnHome = tool 'M3'
+    }
+    stage('Build') {
+withAnt(installation: 'ant installation', jdk: 'java8') {
+sh 'ant -f build.xml'
+}
+    }
+    stage('Output') {
+  echo "Job is done"
+    }
+}
